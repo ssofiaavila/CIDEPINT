@@ -1,0 +1,52 @@
+{% extends "layout.html" %}
+{% block title %}
+<title>Registration</title>
+<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='./css/services/request_service.css') }}">
+{% endblock %}
+{% block head %}
+{{ super() }}
+{% endblock %}
+
+{% block content %}
+
+<div class="login-container">
+    <h2>Crear una nueva solicitud de servicios </h2>
+    <!-- <form action="{{ url_for('services.created') }}" method="POST"> -->
+        <div class="form-group">
+            <label for="name">Servicio solicitado para el usuario: <span> {{ user_name }}</span> </label>   
+        </div>
+        <div class="form-group">
+            <div class="table-responsive">
+            <table>
+                <thead>
+                    <tr>
+                        <th>Nombre</th>
+                        <th>Descripcion</th>
+                        <th>Institución</th>
+                        <th>Tipo de Servicio</th>
+                        <th>Seleccionar</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for serv in services_list %}
+                        <tr>
+                            <td>{{ serv.name }}</td>
+                            <td>{{ serv.description }}</td>
+                            <td> {{ serv.institution.name }}</td>
+                            <td>{{ serv.service_type }}</td>
+                            <td> <a class="btn btn-primary" href="{{ url_for('services.request_creation', serv_id=serv.id, user_id=session['user'] ) }}"  >Solicitar este Servicio</a></td>
+                        </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+
+
+        </div>
+
+        </div>
+        
+    <!-- </form> -->
+</div>
+
+
+{% endblock %}

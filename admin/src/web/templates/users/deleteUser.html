@@ -1,0 +1,17 @@
+{% extends "layout.html" %}
+
+{% block title %}
+<title>Confirmar Eliminación</title>
+{% endblock %}
+
+{% block content %}
+<div class="content-container delete">
+    <h2 class="element-center">Confirmar Eliminación de Usuario</h2>
+    <p>¿Estás seguro de que deseas eliminar al usuario {{ user.name }}?</p>
+    
+    <form method="POST" class="element-center">
+        <button type="submit" class="btn btn-danger">Eliminar</button>
+        <a class="btn btn-dark" href="{{ url_for('users.index') }}">Cancelar</a>
+    </form>
+</div>
+{% endblock %}

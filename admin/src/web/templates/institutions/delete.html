@@ -1,0 +1,20 @@
+{% extends "layout.html" %}
+{% block title %}
+<title>Institucion</title>
+<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='./css/home/basicStyles.css') }}">
+{% endblock %}
+{% block head %}
+{{ super() }}
+{% endblock %}
+
+{% block content %}
+<div class="content-container delete">
+    <h2 class="element-center">Confirmar Eliminación de institucion </h2>
+    <p>¿Estás seguro de que deseas eliminar la institucion "{{ inst.name }}"?</p>
+    
+    <form method="POST" action="{{ url_for('institutions.delete_institution', id=inst.id) }}" class="element-center">
+        <button type="submit" class="btn btn-danger">Eliminar</button>
+        <a class="btn btn-secondary" href="{{ url_for('institutions.index') }}">Cancelar</a>
+    </form>
+</div>
+    {% endblock %}

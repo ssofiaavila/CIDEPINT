@@ -1,0 +1,47 @@
+{% extends "layout.html" %}
+{% block title %}
+<title>Registration</title>
+<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='./css/services/modify.css') }}">
+{% endblock %}
+{% block head %}
+    {{ super() }}
+{% endblock %}
+
+{% block content %}
+
+<div class="login-container">
+    <h2>Modificar Servicio </h2>
+    <form action="{{ url_for('services.modified', id=service.id) }}" method="POST">
+        <div class="form-group">
+            <label for="name">Nombre de servicio</label>
+            <input type="text" id="name" name="name" value="{{service.name}}" required>
+        </div>
+        <div class="form-group">
+            <label for="description">Descripción</label>
+            <input type="text" id="description" name="description" value="{{service.description}}" required>
+        </div>
+        <div class="form-group">
+            <label for="keywords">Palabras clave</label>
+            <input type="text" id="keywords" name="keywords" value="{{service.keywords}}" required>
+        </div>
+        <div class="form-group">
+            <label for="service_type">Tipo de Servicio</label>
+            <select name="service_type" id="service_type" value="{{service.service_type}}">
+                <option value="Analisis">Analisis</option>
+                <option value="Consultoria">Consultoria</option>
+                <option value="Desarrollo">Desarrollo</option>
+            </select>
+        </div>
+        <div class="form-group">
+            <label for="enabled">Activa:</label>
+            <select id="enabled" name="enabled" value="{{service.enabled}}">
+                <option value=True>Si</option>
+                <option value=False>No</option>
+            </select>
+        </div>
+        <button type="submit">Modificar</button>
+    </form>
+</div>
+
+
+{% endblock %}

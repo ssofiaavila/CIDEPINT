@@ -1,0 +1,66 @@
+{% extends "layout.html" %}
+{% block title %}
+<title>Registration</title>
+<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='./css/home/login.css') }}">
+{% endblock %}
+{% block head %}
+    {{ super() }}
+{% endblock %}
+
+{% block content %}
+
+
+<div class="register-container">
+    <div class="register-header">
+        <h5 class="register-title" id="modifyUserModalLabel">Registrar usuario</h5>
+    </div>
+    <div class="register-body">
+        
+        <form method="post" action="{{ url_for('home.registration') }}">
+            <!-- CAMPO NOMBRE -->
+            <div class="form-group">
+                <label for="nombre">Nombre:</label>
+                <input type="text" class="form-control" id="name" name="name" value="" required>
+
+            <!-- CAMPO APELLIDO  -->
+            <div class="form-group">
+                <label for="lastname">Apellido:</label>
+                <input type="text" class="form-control" id="lastname" name="lastname" value="" required>
+            </div>
+
+
+            <!-- CAMPO NOMBRE DE USUARIO -->
+            <div class="form-group">
+                <label for="username">Nombre de usuario:</label>
+                <input type="text" class="form-control" id="username" name="username" value="" required>
+            </div>
+
+            <!-- EMAIL -->
+            <div class="form-group">
+                <label for="email">Email:</label>
+                <input type="email" class="form-control" id="email" name="email" value="" required>
+            </div>
+
+        </div>
+            
+            <button type="submit" class="btn btn-primary">Crear usuario</button>
+        </form>
+    </div>
+    <div class="register-footer">
+        <div class="info">
+            <p class="texto-informativo"> Se enviara una contraseña al mail proporcionado para su primer ingreso</p>
+        </div>
+    </div>
+    <div class="button-bar">
+        <p class="texto-informativo"> O bien podes registrarte con tu cuenta de Google </p>
+        <a class="btn btn-outline-primary my-2 my-sm-0" href="{{ url_for('home.register_google') }}">
+            Registrarse SIN contraseña con su cuenta de Google
+        </a>
+        <a class="btn btn-primary cancel" href="{{ url_for('home.index') }}">
+            Cancelar
+        </a>
+    </div>
+</div>
+
+
+{% endblock %}

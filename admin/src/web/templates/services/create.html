@@ -1,0 +1,48 @@
+{% extends "layout.html" %}
+{% block title %}
+<title>Registration</title>
+<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='./css/services/create.css') }}">
+{% endblock %}
+{% block head %}
+    {{ super() }}
+{% endblock %}
+
+{% block content %}
+
+<div class="login-container">
+    <h2>Crear Servicio </h2>
+    <form action="{{ url_for('services.created') }}" method="POST">
+        <div class="form-group">
+            <label for="name">Nombre de servicio</label>
+            <input type="text" id="name" name="name" placeholder="Ej: Ensayo de corrosión" required>
+        </div>
+        <div class="form-group">
+            <label for="description">Descripción</label>
+            <input type="text" id="description" name="description" placeholder="" required>
+        </div>
+        <div class="form-group">
+            <label for="keywords">Palabras clave</label>
+            <input type="text" id="keywords" name="keywords" placeholder="Ej: Ensayo, Corrosion, Prueba" required>
+        </div>
+        <div class="form-group">
+            <label for="service_type">Tipo de Servicio</label>
+            <select name="service_type" id="service_type">
+                <option value="Analisis">Analisis</option>
+                <option value="Consultoria">Consultoria</option>
+                <option value="Desarrollo">Desarrollo</option>
+            </select>
+        </div>
+        <div class="form-group">
+            <label for="institution">institucion</label>
+            <select name="institution" id="institution">
+                {% for inst in institutions %}
+                    <option value="{{ inst.id }}">{{ inst.name }}</option>
+                {% endfor%}
+            </select>
+        </div>
+        <button type="submit">Crear</button>
+    </form>
+</div>
+
+
+{% endblock %}

@@ -1,0 +1,53 @@
+{% extends "layout.html" %}
+{% block title %}
+<title>Servicios</title>
+<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='./css/services/index.css') }}">
+
+{% endblock %}
+
+{% block content %}
+<div class="content-container">
+    <h1>Información de Servicio Solicitado</h1>
+    <div class="card" style="width: 18rem;">
+        <div class="card-body">
+          <h5 class="card-title">{{ request.service }}</h5>
+          <h6 class="card-title">Tipo de servicio: {{ request.service_type}}</h6>
+        </div>
+        <ul class="list-group list-group-flush">
+          <li class="list-group-item">Solicitado por: {{ request.user }}</li>
+          <li class="list-group-item">Institución: {{ request.institution }}</li>
+          <li class="list-group-item">Fecha de solicitud: {{ request.requested }}</li>
+          <li class="list-group-item">Estado: {{ request.status }}
+            {% if session["role"] != "Usuario sin rol" %}
+            <form method="POST" action="{{ url_for('services.request_info_update', id=request.id, flag_status=1) }}" class="form-inline mb-3">
+              <select name="status" id="status">
+                {% for est in estados %}
+                    <option value="{{ est.id }}">{{ est.name }}</option>
+                {% endfor %}
+              </select>
+            <button type="submit" class="btn btn-primary my-2 my-sm-0">Cambiar estado</button>
+            </form>
+            {% endif %}
+          </li>
+        </ul>
+    </div>
+
+    <div class="card text-center">
+        <div class="card-header">
+          Comentarios
+        </div>
+        <div class="card-body">
+          <p class="text-start">{{ request.comment | safe }}</p>
+          <br>
+          <br>
+            {% if session["role"] != "Usuario sin rol" %}
+            <form method="POST" action="{{ url_for('services.request_info_update', id=request.id, flag_status=0) }}" class="form-inline mb-3">
+              <input type="text" class="form-control mr-sm-2" name="add_comment" placeholder="Comentario">
+              <button type="submit" class="btn btn-primary my-2 my-sm-0">Realizar comentario</button>
+            </form>
+            {% endif %}
+        </div>
+      </div>
+      <a href="{{ url_for('services.index') }}" class="btn btn-success my-2 my-sm-0">Volver a Servicios</a>
+</div>
+{% endblock %}

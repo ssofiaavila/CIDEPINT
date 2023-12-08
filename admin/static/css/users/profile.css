@@ -1,0 +1,26 @@
+/* Media Query para tamaños de pantalla más pequeños */
+@media (max-width: 768px) {
+
+    /* Cambios en el diseño para pantallas pequeñas */
+    table {
+        width: 100%;
+        overflow-x: auto;
+        /* Agregar desplazamiento horizontal si la tabla es más ancha que la pantalla */
+    }
+
+    tbody td,
+    thead th {
+        white-space: nowrap;
+        /* Evitar el salto de línea en celdas de datos y encabezado */
+    }
+}
+
+.container {
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+}
+
+.card-text {
+    color: black;
+}

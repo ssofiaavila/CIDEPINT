@@ -1,0 +1,74 @@
+{% extends "layout.html" %}
+{% block title %}
+<title>Institucion Info</title>
+<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='./css/institutions/info.css') }}">
+{% endblock %}
+{% block head %}
+{{ super() }}
+{% endblock %}
+
+{% block content %}
+
+<div class="container">
+    <div class="card text-center">
+        <div class="card-header">
+            <h1 class="card-title">{{inst.name}}</h1>
+        </div>
+        <div class="card-body">
+            <p class="card-text"><b>Direccion: </b>{{ inst.address }}</p>
+            <p class="card-text"><b>Ubicación:</p>
+            <p> </b><iframe src="{{ inst.location }}" width="600" height="400" frameborder="0" scrolling="no"></iframe></p>
+            <p class="card-text"><b>Informacion: </b>{{ inst.info }}</p>
+            <p class="card-text"><b>Informacion de contacto: </b>{{ inst.contact_info }}</p>
+            <p class="card-text"><b>Telefono: </b>+{{ inst.phone }}</p>
+            <p class="card-text"><b>Web:</b> <a href="{{ inst.web }}" target="_blank">{{ inst.web }}</a></p>
+            <p class="card-text"><b>Diá/s:</b>
+                    {% for day in selected_day_names %}
+                        {{ day.title() }}
+                    {% endfor %}              
+            </p>
+            <p class="card-text">
+                <b>Franja Horaria: </b>{{ selected_time_slots }}
+            </p>
+        </div>
+        <br>
+        <div>
+            <h2>Servicios ofrecidos</h2>
+            {% if session["role"] != "Usuario sin rol" %}
+                <a href="{{ url_for('services.my_services', id=inst.id)}}" class="btn btn-primary">Administración de servicios</a>
+            {% endif %}
+            <div class="table-responsive">
+            <table>
+                <thead>
+                    <tr>
+                        <th>Nombre</th>
+                        <th>Descripcion</th>
+                        <th>Tipo de Servicio</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for serv in services %}
+                        <tr>
+                            <td>{{ serv.name }}</td>
+                            <td>{{ serv.description }}</td>
+                            <td>{{ serv.service_type }}</td>
+                        </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+        </div>
+        <div class="card-footer text-muted">
+            {% if inst.enabled %}
+            En servicio
+            {% else %}
+            Fuera de servicio
+            {% endif %}
+        </div>
+    </div>
+    {% if ( session["role"] == "Super Administrador") %}
+        <a href="{{ url_for('institutions.index') }}" type="button" class="btn btn-secondary">Volver a Instituciones</a>
+    {% endif %}
+    <a href="{{ url_for('services.index') }}" type="button" class="btn btn-dark">Volver a Servicios</a>
+</div>
+{% endblock %}

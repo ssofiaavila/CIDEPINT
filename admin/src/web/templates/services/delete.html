@@ -1,0 +1,23 @@
+{% extends "layout.html" %}
+{% block title %}
+<title>Servicios</title>
+<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='./css/services/delete.css') }}">
+{% endblock %}
+{% block head %}
+    {{ super() }}
+{% endblock %}
+
+{% block content %}
+
+<h2>
+    <center>
+        <h2>Eliminación de Servicio "{{ service.name }}"</h2>
+        <p>Estás a punto de eliminar el servicio "{{ service.name }}" . ¿Estás seguro de que deseas continuar?</p>     
+        <form action="{{ url_for('services.deleted', id=service.id) }}" method="POST">
+            <button type="submit" class="btn btn-sm btn-danger">Sí, Eliminar</button>
+            <a href="{{ url_for('services.index') }}" class="btn btn-sm btn-secondary">Cancelar</a>
+        </form>
+    </center>
+
+
+    {% endblock %}

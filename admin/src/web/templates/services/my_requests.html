@@ -1,0 +1,35 @@
+{% extends "layout.html" %}
+{% block title %}
+<title>Solicitudes de  Servicios</title>
+<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='./css/services/index.css') }}">
+
+{% endblock %}
+
+{% block content %}
+<div class="content-container">
+    <h1>Mis Solicitudes de servicios</h1>
+    <div class="table-responsive">
+    <table>
+        <thead>
+            <tr>
+                <th>Servicio</th>
+                <th>Soliciatado</th>
+                <th>Estado</th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for req in request_list %}
+                <tr>
+                    <td>{{ req.service }}</td>
+                    <td>{{ req.requested }}</td>
+                    <td>{{ req.status }}</td>
+                    <td><a href="{{ url_for('services.request_info', id=req.id) }}" class="btn btn-sm btn-primary">Ver detalle</a></td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    </div>
+    <a href="{{ url_for('services.index') }}" type="button" class="btn btn-dark">Volver a Servicios</a>
+</div>
+{% endblock %}

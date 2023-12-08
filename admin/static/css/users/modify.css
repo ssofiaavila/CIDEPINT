@@ -1,0 +1,158 @@
+/* Estilos para el contenedor del formulario */
+.modify-container {
+    background-color: #fff;
+    border-radius: 5px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+    padding: 20px;
+    width: 300px;
+    margin-top: 5%;
+    margin-left: 30%;
+    margin-right: 30%;
+}
+
+/* Estilos para el título */
+h2 {
+    margin-bottom: 20px;
+    color: #333;
+}
+
+/* Estilos para los campos de entrada y etiquetas */
+.form-group {
+    margin-bottom: 15px;
+    text-align: left;
+}
+
+label {
+    display: block;
+    margin-bottom: 5px;
+    font-weight: bold;
+}
+
+input[type="text"],
+input[type="password"] {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+/* Estilos para el botón de inicio de sesión */
+button[type="submit"] {
+    width: 100%;
+    padding: 10px;
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+button[type="submit"]:hover {
+    background-color: #0056b3;
+}
+.guardar-button{
+    margin-top: 5%;
+    margin-bottom: 2%;
+    margin-left: 23%;
+}
+.cancel-button{
+    align-self: center;
+}
+.modal-footer{
+    justify-content: center;
+}
+
+.institutions-box{
+    min-height: 250px;
+}
+
+/* Media Query para pantallas con resolución menor a 360px */
+@media (max-width: 359px) {
+    .content-container {
+        width: 100%;
+        margin: 0;
+    }
+
+    table {
+        font-size: 12px;
+    }
+    table {
+        width: 100%;
+        overflow-x: auto; /* Agregar desplazamiento horizontal si la tabla es más ancha que la pantalla */
+    }
+
+    tbody td, thead th {
+        white-space: nowrap; /* Evitar el salto de línea en celdas de datos y encabezado */
+    }
+    .info-pic{
+        max-width: 300px;
+        max-height: 300px;
+    }
+    .modify-container{
+        background-color: #fff;
+        border-radius: 5px;
+        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+        padding: 20px;
+        width: 300px;
+        margin-top: 5%;
+        margin-left: 2%;
+        margin-right: 2%;
+    }
+}
+
+
+/* Media Query para pantallas con resolución entre 360px y 767px */
+@media (min-width: 360px) and (max-width: 767px) {
+    .content-container {
+        width: 100%;
+        margin: 0;
+    }
+    table {
+        width: 100%;
+        overflow-x: auto; /* Agregar desplazamiento horizontal si la tabla es más ancha que la pantalla */
+    }
+
+    tbody td, thead th {
+        white-space: nowrap; /* Evitar el salto de línea en celdas de datos y encabezado */
+    }
+    table {
+        font-size: 14px;
+    }
+    .info-pic{
+        max-width: 300px;
+        max-height: 300px;
+    }
+    .modify-container, .register-container {
+        background-color: #fff;
+        border-radius: 5px;
+        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+        padding: 20px;
+        width: 300px;
+        margin-top: 5%;
+        margin-left: 10%;
+        margin-right: 10%;
+    }
+
+}
+
+/* Media Query para pantallas con resolución mayor a 768px */
+@media (min-width: 768px) {
+    /* Los estilos base definidos previamente se aplican automáticamente */
+    
+    .modify-container, .register-container {
+        width: 90%;
+    }
+    .modify-container, .register-container {
+        background-color: #fff;
+        border-radius: 5px;
+        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+        padding: 20px;
+        width: 300px;
+        margin-top: 5%;
+        margin-left: 30%;
+        margin-right: 30%;
+    }
+
+}
+

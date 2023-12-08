@@ -1,0 +1,91 @@
+
+/* Estilos para el contenedor del formulario */
+.create-container {
+    background-color: #fff;
+    border-radius: 5px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+    padding: 20px;
+    
+    justify-content: center;
+    margin-left: 30%;
+    margin-right: 30%;
+    width: 100%;
+}
+
+/* Estilos para el título */
+h2 {
+    margin-bottom: 20px;
+    color: #333;
+    text-align: center;
+}
+
+/* Estilos para los campos de entrada y etiquetas */
+.form-group {
+    margin-bottom: 15px;
+    text-align: left;
+}
+
+label {
+    display: block;
+    margin-bottom: 5px;
+    font-weight: bold;
+}
+
+input[type="text"],
+input[type="password"] {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+/* Estilos para el botón de inicio de sesión */
+button[type="submit"] {
+    width: 10%;
+    padding: 10px;
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+
+}
+
+button[type="submit"]:hover {
+    background-color: #0056b3;
+
+}
+
+.register-footer{
+    margin-top: 1%;
+}
+.dias-container{
+    display: flexbox;
+    margin-top: 2rem;
+    margin-bottom: 1rem;
+}
+
+.dias-item{
+    display:inline-flex;
+    margin-left: 1%;
+    margin-right: 1%;
+}
+.option-input-label{
+    margin-right: 5%;
+    display: inline;
+    font-weight: normal;
+}
+.horarios-item{
+    display: inline-block;
+}
+.horarios-container{
+    margin-bottom: 3%;
+}
+
+/* Media Query para tamaños de pantalla más pequeños */
+@media (max-width: 768px) {
+    .create-container {
+        width: 90%;
+    }
+}

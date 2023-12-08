@@ -1,0 +1,14 @@
+.marketing{
+    margin-top: 5rem;
+}
+
+.banner {
+    width: 100%;
+}
+.body-circle-logo{
+    width: 8rem; /* Ajusta el tamaño relativo deseado */
+    height: 8rem; /* Ajusta el tamaño relativo deseado */
+    max-width: 100%; /* Hace que la imagen sea responsive */
+    border-radius: 100%;
+    border: solid 1px darkgray;
+}

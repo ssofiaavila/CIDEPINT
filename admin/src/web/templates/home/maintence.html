@@ -1,0 +1,11 @@
+{% extends "layout.html" %}
+{% block title %}
+<title>Grupo 19 | Proyecto de sofwtare</title>
+<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='/css/home/home.css') }}">
+{% endblock %}
+
+{% block content %}
+<h2>{{maintence.message}}
+   <br>Mail de contacto: <a target="_blank" href="mailto:{{maintence.contact}}">{{maintence.contact}}</a>
+</h2>
+{% endblock %}

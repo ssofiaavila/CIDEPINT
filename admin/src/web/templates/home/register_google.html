@@ -1,0 +1,62 @@
+{% extends "layout.html" %}
+{% block title %}
+<title>Registration</title>
+<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='./css/home/login.css') }}">
+{% endblock %}
+{% block head %}
+    {{ super() }}
+{% endblock %}
+
+{% block content %}
+
+
+<div class="register-container">
+    <div class="register-header">
+        <h5 class="register-title" id="modifyUserModalLabel">Crear usuario al registrarse con Google</h5>
+    </div>
+    <div class="register-body">
+        
+        <form method="post" action="{{ url_for('home.registration_con_google') }}">
+            <!-- CAMPO NOMBRE -->
+            <div class="form-group">
+                <label for="nombre">Nombre:</label>
+                <input type="text" class="form-control" id="name" name="name" value="" required>
+
+            <!-- CAMPO APELLIDO  -->
+            <div class="form-group">
+                <label for="lastname">Apellido:</label>
+                <input type="text" class="form-control" id="lastname" name="lastname" value="" required>
+            </div>
+
+
+            <!-- CAMPO NOMBRE DE USUARIO -->
+            <div class="form-group">
+                <label for="username">Nombre de usuario:</label>
+                <input type="text" class="form-control" id="username" name="username" value="" required>
+            </div>
+
+            <!-- EMAIL -->
+            <div class="form-group">
+                <label for="email">Email ( xxx..xx@gmail.com):</label>
+                <input type="email" class="form-control" id="email" name="email" value="" required>
+            </div>
+
+        </div>
+            
+            <button type="submit" class="btn btn-primary register-button">Registrarme</button>
+        </form>
+    </div>
+    <div class="register-footer">
+        <div class="info">
+            <p class="texto-informativo"> Al registrarte con tu cuenta de Google (NO SE TE PEDIRA QUE REGISTRES LUEGO TU CONTRASEÑA) y accederas siempre con tus credenciales de gmail por medio del login seguro de google</p>
+        </div>
+    </div>
+    <div class="button-bar">
+        <a class="btn btn-primary" href="{{ url_for('home.index') }}">
+            Cancelar
+        </a>
+    </div>
+</div>
+
+
+{% endblock %}

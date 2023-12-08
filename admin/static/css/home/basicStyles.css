@@ -1,0 +1,181 @@
+body{
+    background-color: #d2d0d0;
+    
+}
+h1, p {
+    color: #9C1A1C;
+    text-align: center;
+}
+ul{
+    margin: 2rem;
+    padding: 1rem;
+}
+li > ul {
+        margin-top: 1rem;
+        color: #0c3b56;
+    }
+.hello-world{
+    color:#0c3b56;
+    margin-left: 5rem;
+    text-align: center;
+}
+h3{
+    text-align: left;
+    margin-left: 2rem;
+}
+.content-container {
+    min-height: 900px;
+}
+.header-logo{
+    width: 10em; /* Ajusta el tamaño relativo deseado */
+    height: 4rem; /* Ajusta el tamaño relativo deseado */
+    max-width: 100%; /* Hace que la imagen sea responsive */
+    border-radius: 15%;
+}
+/* Estilos generales para el header */
+header {
+    background-color: #333; /* Color de fondo del header */
+    padding: 1rem 0; /* Espaciado interno superior e inferior */
+}
+
+/* Estilos para la navegación */
+.nav {
+    flex-wrap: wrap; /* Permite que los elementos de navegación se envuelvan en tamaños de pantalla más pequeños */
+    list-style: none; /* Quita los puntos de la lista */
+    padding-left: 0; /* Elimina el relleno izquierdo de la lista */
+    margin-bottom: 0; /* Elimina el margen inferior de la lista */
+}
+
+.nav-item {
+    margin-right: 15px; /* Espaciado entre elementos de navegación */
+}
+
+/* Estilos para el formulario de búsqueda */
+.form-control {
+    width: 100%; /* Ocupa todo el ancho disponible */
+    max-width: 400px; /* Establece un ancho máximo para evitar que el formulario sea demasiado ancho en pantallas grandes */
+}
+
+/* Estilos para los botones de login y sign-up */
+.btn {
+    margin-left: 10px; /* Espaciado entre botones */
+}
+p.flash{
+    color:#222020
+}
+
+p.flash.error{
+    border: 3px solid red;
+    background-color: #ff440070;
+}
+
+p.flash.success{
+    border: 3px solid green;
+    background-color: #acff2f70;
+}
+
+p.flash.info{
+    border: 3px solid blue;
+    background-color: #0000ff6e;
+}
+
+.error-name, .error-description{
+    text-align: center;
+    align-self: center;
+}
+
+.button-container{
+    text-align: center;
+}
+
+.button-link {
+    display: inline-block;
+    padding: 10px 20px;
+    background-color: #6893c2; /* Color de fondo del botón */
+    color: #fff; /* Color del texto del botón */
+    text-decoration: none; /* Eliminar subrayado del enlace */
+    border-radius: 5px; /* Bordes redondeados */
+    font-weight: bold;
+}
+
+/* Estilos para el enlace botón al pasar el mouse */
+.button-link:hover {
+    background-color: #0056b3; /* Cambiar color de fondo al pasar el mouse */
+}
+
+.profile-logo{
+    background-color: #d2d0d0;
+    width: 32px;
+    height: 32px;
+}
+.header-dropdown {
+    background-color: #d2d0d0;
+    border-radius: 3% solid black;
+    margin-right: 8px;
+    padding-left: 3px;
+}
+
+.element-center{
+    margin-left: 25%;
+    margin-right: 25%;
+    text-align: center;
+}
+
+/* Media Query para pantallas con resolución menor a 360px */
+@media (max-width: 359px) {
+    .content-container {
+        width: 100%;
+        margin: 0;
+    }
+
+    table {
+        font-size: 12px;
+    }
+    table {
+        width: 100%;
+        overflow-x: auto; /* Agregar desplazamiento horizontal si la tabla es más ancha que la pantalla */
+    }
+
+    tbody td, thead th {
+        white-space: nowrap; /* Evitar el salto de línea en celdas de datos y encabezado */
+    }
+    .info-pic{
+        max-width: 300px;
+        max-height: 300px;
+    }
+
+}
+
+/* Media Query para pantallas con resolución entre 360px y 767px */
+@media (min-width: 360px) and (max-width: 767px) {
+    .content-container {
+        width: 100%;
+        margin: 0;
+    }
+    table {
+        width: 100%;
+        overflow-x: auto; /* Agregar desplazamiento horizontal si la tabla es más ancha que la pantalla */
+    }
+
+    tbody td, thead th {
+        white-space: nowrap; /* Evitar el salto de línea en celdas de datos y encabezado */
+    }
+    table {
+        font-size: 14px;
+    }
+    .info-pic{
+        max-width: 300px;
+        max-height: 300px;
+    }
+
+}
+
+/* Media Query para pantallas con resolución mayor a 768px */
+@media (min-width: 768px) {
+    /* Los estilos base definidos previamente se aplican automáticamente */
+    
+    .login-container, .register-container {
+        width: 90%;
+    }
+
+}

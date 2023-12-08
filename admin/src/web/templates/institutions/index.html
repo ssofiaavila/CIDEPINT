@@ -1,0 +1,97 @@
+{% extends "layout.html" %}
+{% block title %}
+<title>Institutions</title>
+<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='./css/institutions/index.css') }}">
+{% endblock %}
+
+{% block content %}
+<div class="content-container">
+    <h1>Instituciones</h1>
+    {% if is_authenticated(session)  and ( session["role"] != "Operador" and session["role"] != "Usuario sin rol") %}
+    <a href="{{ url_for('institutions.create')  }}" type="button" class="btn btn-dark">Crear Institución</a>
+    {% endif %}
+    <form method="GET" action="{{ url_for('institutions.index') }}" class="form-inline mb-3">
+        <input type="text" class="form-control mr-sm-2 inline-search" name="search_institution" placeholder="Buscar nombre o palabra clave">
+        <button type="submit" class="btn btn-outline-primary my-2 my-sm-0">Buscar</button>
+    </form>
+    <div class="table-responsive">
+    <table>
+        <thead>
+            <tr>
+                <th>#</th>
+                <th>Nombre</th>
+                <th>Direccion</th>
+                <th>Telefono</th>
+                <th>Web</th>
+                <th>Info</th>
+                {% if is_authenticated(session) %}
+                <th>Activa</th>
+                {% endif %}
+                <th>Acciones</th>
+                {% if is_authenticated(session) and ( session["role"] != "Operador" and session["role"] != "Usuario sin rol")%}
+                <th></th>
+                <th></th>
+                {% endif %}
+            </tr>
+        </thead>
+        <tbody>
+            {% for inst in institutions %}
+            <tr>
+                <td>{{ loop.index }}</td>
+                <td>{{ inst.name }}</td>
+                <td>{{ inst.address }}</td>
+                <td>{{ inst.phone }}</td>
+                <td><a href="{{ inst.web }}" target="_blank">{{ inst.web }}</a></td> 
+                <td>{{ inst.info }}</td>
+                {% if is_authenticated(session) %}
+                <td class="{% if inst.enabled %}activo{% else %}inactivo{% endif %}">
+                    {% if inst.enabled %}ON{% else %}OFF{% endif %}
+                </td>
+                {% endif %}
+                
+                {% if is_authenticated(session) and ( session["role"] != "Operador" and session["role"] != "Usuario sin rol")%}
+                <td>
+                    <a href="{{ url_for('institutions.modify_institution', id=inst.id) }}"
+                        class="btn btn-sm btn-primary">
+                        Modificar
+                    </a>
+                </td>
+                <td>
+                    <a href="{{ url_for('institutions.delete_institution', id=inst.id) }}" class="btn btn-sm btn-dark">
+                        Eliminar
+                    </a>
+                </td>
+                    {% endif %}
+                <td>
+                    <a href="{{ url_for('institutions.info_institution', id=inst.id) }}" class="btn btn-sm btn-primary">
+                        Detalle
+                    </a>
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    </div>
+    <div class="pagination">
+        <ul class="pagination pagination-sm">
+            {% if current_page > 1 %}
+            <li class="page-item">
+                <a href="{{ url_for('institutions.index', page=current_page - 1, items_per_page=items_per_page) }}"
+                    class="page-link">Anterior</a>
+            </li>
+            {% endif %}
+            {% for page_num in range(1, total_pages + 1) %}
+            <li class="page-item {% if page_num == current_page %}active{% endif %}">
+                <a href="{{ url_for('institutions.index', page=page_num, items_per_page=items_per_page) }}"
+                    class="page-link">{{ page_num }}</a>
+            </li>
+            {% endfor %}
+            {% if current_page < total_pages %} <li class="page-item">
+                <a href="{{ url_for('institutions.index', page=current_page + 1, items_per_page=items_per_page) }}"
+                    class="page-link">Siguiente</a>
+                </li>
+                {% endif %}
+        </ul>
+    </div>
+</div>  
+{% endblock %}

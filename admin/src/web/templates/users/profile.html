@@ -1,0 +1,35 @@
+{% extends "layout.html" %}
+{% block title %}
+<title>Profile</title>
+<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='./css/users/profile.css') }}">
+{% endblock %}
+
+{% block content %}
+<div class="content-container">
+
+<div class="container">
+    <div class="card text-center">
+        <div class="card-header">
+            <h1 class="card-title">Información del Usuario</h1>
+        </div>
+        <div class="card-body">
+            <p class="card-text"><b>Nombre: </b>{{ user.name }}</p>
+            <p class="card-text"><b>Apellido: </b>{{ user.lastname }}</p>
+            <p class="card-text"><b>Nombre de Usuario: </b>{{ user.username }}</p>
+            <p class="card-text"><b>Correo Electronico: </b>{{ user.email }}</p>
+        </div>
+        <div class="card-footer text-muted">
+            {% if user.activo %}
+            Activo
+            {% else %}
+            Inactivo
+            {% endif %}
+        </div>
+        
+    </div>
+    <div class="button-container">
+    <a href="{{ url_for('home.index') }}" type="button" class="btn btn-success">Volver al Menu Principal</a>
+    <a href="{{ url_for('users.index') }}" type="button" class="btn btn-success">Volver a Usuarios</a>
+</div>
+</div>
+{% endblock %}

@@ -1,0 +1,81 @@
+<header class="p-3 text-bg-dark">
+
+  <div class="d-flex flex-wrap align-items-center justify-content-center justify-content-lg-start">
+    <a href="{{ url_for('home.index') }}"
+      class="d-flex align-items-center mb-2 mb-lg-0 text-white text-decoration-none">
+      <img class="header-logo" src="{{ url_for('static', filename='img/home/cidepint_logo.jpg') }}" alt="company-logo">
+    </a>
+
+    <ul class="nav col-12 col-lg-auto me-lg-auto mb-2 justify-content-center mb-md-0">
+      {% if is_authenticated(session) %} 
+      {% if ( session["role"] == "Super Administrador" or  session["role"] == "Dueño") %}
+      <li><a class="nav-link px-2 text-white" href="{{ url_for('users.index') }}" class="link">Usuarios</a></li>
+      {% endif %}
+      {% if ( session["role"] == "Super Administrador") %}
+      <li><a class="nav-link px-2 text-white" href="{{ url_for('institutions.index') }}" class="link">Instituciones</a></li>
+      
+          {% endif %}
+      <li><a class="nav-link px-2 text-white" href="{{ url_for('services.index') }}" class="link"> Servicios</a>
+      </li>
+      {% endif %}
+    </ul>
+
+
+    {% if is_authenticated(session) %}
+    {% if session["role"] == "Super Administrador" %}
+    <!-- Menu de superadministrador para paginacion y mantenimiento -->
+    <div class="flex-shrink-0 dropdown header-dropdown">
+      <a href="#" class="d-block link-body-emphasis text-decoration-none dropdown-toggle header-dropdown"
+        data-bs-toggle="dropdown" aria-expanded="false">
+        Configuración
+      </a>
+    
+      <ul class="dropdown-menu text-small shadow">
+        <li><a class="dropdown-item" href="{{ url_for('home.config_paginate') }}" class="link">Configurar paginacion</a></li>
+        <li><a class="dropdown-item" href="{{ url_for('home.confirmation_maintence') }}" class="link">Poner sitio en
+            mantenimiento</a></li>
+      </ul>
+    
+    </div>  
+    {% endif %}
+    <!-- Menú desplegable de Instituciones -->
+    <div class="flex-shrink-0 dropdown header-dropdown">
+      <a href="#" class="d-block link-body-emphasis text-decoration-none dropdown-toggle header-dropdown"
+        data-bs-toggle="dropdown" aria-expanded="false">
+        Mis instituciones
+      </a>
+
+      <ul class="dropdown-menu text-small shadow">
+        {% for inst in session["institutions"] %}
+        <li><a class="dropdown-item" href="{{ url_for('institutions.info_institution', id=inst.id) }}">{{ inst.name
+            }}</a></li>
+        {% endfor %}
+      </ul>
+
+    </div>
+    <div class="flex-shrink-0 dropdown">
+      <a href="#" class="d-block link-body-emphasis text-decoration-none dropdown-toggle" data-bs-toggle="dropdown"
+        aria-expanded="false">
+        <img class="profile-logo rounded-circle" src="{{ url_for('static', filename='/img/home/brocha.png')}}"
+          alt="profile-logo" class="rounded-circle">
+      </a>
+      <ul class="dropdown-menu text-small shadow">
+        <li><p class="dropdown-item" >{{ session["role"] }}</a></li>
+        <li>
+          <hr class="dropdown-divider">
+        </li>
+        <li><a class="dropdown-item" href="{{ url_for('auth.profile') }}">Mi Perfil</a></li>
+        <li>
+          <hr class="dropdown-divider">
+        </li>
+        <li><a class="dropdown-item" href="{{ url_for('auth.logout') }}">Cerrar Sesión</a></li>
+      </ul>
+    </div>
+
+    {% else %}
+    <a href="{{ url_for('auth.login') }}" class="btn btn-outline-light me-2">Iniciar Sesion</a>
+    <a href="{{ url_for('home.register') }}" class="btn btn-outline-light me-2">Registrarse</a>
+    {% endif %}
+
+  </div>
+</header>

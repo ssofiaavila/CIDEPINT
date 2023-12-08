@@ -1,0 +1,98 @@
+{% extends "layout.html" %}
+{% block title %}
+<title>Grupo 19 | Proyecto de sofwtare</title>
+<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='/css/home/home.css') }}">
+{% endblock %}
+
+{% block content %}
+<div class="content-container">
+  
+  <main>
+  
+    <div class="col-lg-12  ml-2">
+      <div class="banner-section ">
+          <img src="{{ url_for('static', filename='/img/home/banner.jpg') }}" class="banner" alt="banner">
+      </div>
+  </div>
+  
+    <div class="container marketing">
+      
+  
+      <!-- Three columns of text below the carousel -->
+      <div class="row">
+        {% if (session["role"] == "Super Administrador") %}
+          <div class="col-lg-4"> 
+            <img class="body-circle-logo" src="{{ url_for('static', filename='img/home/institutions.png') }}" alt="institutions-logo">
+            <h2 class="fw-normal">Instituciones</h2>
+            <p>Encontra información acerca de centros de investigación o instituciones.</p>
+            {% if is_authenticated(session) and session["role"] != "Operardor" and session["role"] != "Usuario sin rol" %}
+            <p><a class="btn btn-secondary" href="{{ url_for('institutions.index') }} "> Info &raquo;</a></p>
+            {% endif %}
+          </div><!-- /.col-lg-4 -->
+        {% endif %}
+        <div class="col-lg-4">
+          <img class="body-circle-logo" src="{{ url_for('static', filename='img/home/services.png') }}" alt="services-logo">
+          <h2 class="fw-normal">Servicios</h2>
+          <p>Busca los servicios que necesites contratar en un solo lugar.</p>
+          {% if is_authenticated(session) %}
+          <p><a class="btn btn-secondary" href="{{ url_for('services.index') }}">Info &raquo;</a></p>
+          {% endif %}
+        </div><!-- /.col-lg-4 -->
+        {% if not is_authenticated(session) %}
+        <div class="col-lg-4">
+          <img class="body-circle-logo" src="{{ url_for('static', filename='img/home/register.png') }}" alt="register-logo">
+          <h2 class="fw-normal">Registrate</h2>
+          <p>Registrate como usuario para dar de alta tu institucion y asi llegar a miles de personas.</p>
+          <p><a class="btn btn-secondary" href="{{ url_for('home.register') }}">Comenzar &raquo;</a></p>
+        </div><!-- /.col-lg-4 -->
+        {% endif %}
+      </div><!-- /.row -->
+  
+  
+      <!-- START THE FEATURETTES -->
+  
+      <hr class="featurette-divider">
+  
+      <div class="row featurette">
+        <div class="col-md-7">
+          <h2 class="featurette-heading fw-normal lh-1">Acerca de  <span class="text-body-secondary">CIDEPINT</span></h2>
+          <p class="lead">En la actualidad, el CIDEPINT es una institución que depende del sistema CICPBA-CONICET-UNLP y ha ampliado considerablemente su campo de experiencia. El centro cuenta hoy con personal capacitado en el desarrollo y caracterización de pinturas anticorrosivas y decorativas, antiincrustantes, con propiedades antifúngicas, entre otras con aplicaciones específicas. De la misma manera se incorporaron líneas de trabajo en el área de pretratamientos de aceros, biodeterioro de materiales estructurales, inhibición de la corrosión, galvanoplastía y siderurgia, muchas de las cuales se enfocan en la obtención de alternativas ecológicas que reduzcan el impacto de la industria sobre el medio ambiente..</p>
+        </div>
+        <div class="col-md-5">
+          <img src="{{ url_for('static', filename='/img/home/worker.png') }}" class="info-pic" alt="CIDEPINT">
+        </div>
+      </div>
+  
+      <hr class="featurette-divider">
+  
+      <div class="row featurette">
+        <div class="col-md-7 order-md-2">
+          <h2 class="featurette-heading fw-normal lh-1">Encontra lo que estas <span class="text-body-secondary">buscando.</span></h2>
+          <p class="lead">Mas de 100 instuticiones registradas que proveen servicios de la industria. Aqui podras encontrar lo que estabas buscando para tu proximo proyecto y conectar con los mejores proveedores.</p>
+        </div>
+        <div class="col-md-5 order-md-1">
+          <img src="{{ url_for('static', filename='/img/home/search.png') }}" class="info-pic" alt="CIDEPINT">
+        </div>
+      </div>
+  
+      <hr class="featurette-divider">
+  
+      <div class="row featurette">
+        <div class="col-md-7">
+          <h2 class="featurette-heading fw-normal lh-1">Solicita servicios de forma <span class="text-body-secondary">Rapida y facil.</span></h2>
+          <p class="lead">Accede al listado de servicios, selecciona el que estes necesitando, realiza una solicitud y monitorea la confirmacion de la misma, todo en un mismo portal.</p>
+        </div>
+        <div class="col-md-5">
+          <img src="{{ url_for('static', filename='/img/home/hire.png') }}" class="info-pic" alt="CIDEPINT">
+        </div>
+      </div>
+  
+      <hr class="featurette-divider">
+  
+      <!-- /END THE FEATURETTES -->
+  
+    </div><!-- /.container -->
+  
+
+</div>
+{% endblock %}

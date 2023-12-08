@@ -1,0 +1,61 @@
+{% extends "layout.html" %}
+{% block title %}
+<title>Servicios</title>
+<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='./css/services/index.css') }}">
+
+{% endblock %}
+
+{% block content %}
+<div class="content-container">
+    <h1>Lista de servicios solicitados</h1>
+    <!-- <form method="GET" action="{{ url_for('services.my_services', id=institution) }}" class="form-inline mb-3">
+        <input type="text" class="form-control mr-sm-2" name="search_services" placeholder="Buscar nombre o palabra clave">
+        <button type="submit" class="btn btn-outline-primary my-2 my-sm-0">Buscar</button>
+    </form> -->
+    <div class="table-responsive">
+    <table>
+        <thead>
+            <tr>
+                <th>Servicio</th>
+                <th>Solicitante</th>
+                <th>Fecha de solicitud</th>
+                <th>Estado</th>
+                <th>Acciones</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for req in requested %}
+                <tr>
+                    <td>{{ req.service }}</td>
+                    <td>{{ req.user }}</td>
+                    <td>{{ req.requested }}</td>
+                    <td>{{ req.status }}</td>
+                    <td><a href="{{ url_for('services.request_info', id=req.id) }}" class="btn btn-sm btn-dark">Ver en detalle</a></td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+    <div class="pagination">
+        <ul class="pagination pagination-sm">
+            {% if current_page > 1 %}
+            <li class="page-item">
+                <a href="{{ url_for('services.requested', id=institution, page=current_page - 1, items_per_page=items_per_page) }}"
+                    class="page-link">Anterior</a>
+            </li>
+            {% endif %}
+            {% for page_num in range(1, total_pages + 1) %}
+            <li class="page-item {% if page_num == current_page %}active{% endif %}">
+                <a href="{{ url_for('services.requested', id=institution, page=page_num, items_per_page=items_per_page) }}" class="page-link">{{
+                    page_num }}</a>
+            </li>
+            {% endfor %}
+            {% if current_page < total_pages %} <li class="page-item">
+                <a href="{{ url_for('services.requested', id=institution, page=current_page + 1, items_per_page=items_per_page) }}"
+                    class="page-link">Siguiente</a>
+                </li>
+                {% endif %}
+        </ul>
+    </div>
+</div>
+{% endblock %}

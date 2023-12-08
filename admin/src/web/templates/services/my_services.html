@@ -1,0 +1,78 @@
+{% extends "layout.html" %}
+{% block title %}
+<title>Servicios</title>
+<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='./css/services/index.css') }}">
+
+{% endblock %}
+
+{% block content %}
+<div class="content-container">
+    <h1>Lista de servicios</h1>
+    {% if is_authenticated(session) %}
+    <a href="{{ url_for('services.create', id=session['institutions'])}}" class="btn btn-success">Crear Servicio</a>
+    <a href="{{ url_for('services.requested', id=institution)}}" class="btn btn-success">Ver servicios solicitados</a>
+    {% endif %}
+
+    <form method="GET" action="{{ url_for('services.my_services', id=institution) }}" class="form-inline mb-3">
+        <input type="text" class="form-control mr-sm-2" name="search_services" placeholder="Buscar nombre o palabra clave">
+        <button type="submit" class="btn btn-outline-primary my-2 my-sm-0">Buscar</button>
+    </form>
+    <div class="table-responsive">
+    <table>
+        <thead>
+            <tr>
+                <th>Nombre</th>
+                <th>Descripcion</th>
+                <th>Institución</th>
+                <th>Tipo de Servicio</th>
+                <th>Activa</th>
+                <th>Acciones</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for serv in services %}
+                <tr>
+                    <td>{{ serv.name }}</td>
+                    <td>{{ serv.description }}</td>
+                    <td>
+                        <a href="{{ url_for('institutions.info_institution', id=serv.institution.id) }}" >{{ serv.institution.name }}</a>
+                    </td>
+                    <td>{{ serv.service_type }}</td>
+                    <td class="{% if serv.enabled %}activo{% else %}inactivo{% endif %}">
+                        {% if serv.enabled %}ON{% else %}OFF{% endif %}
+                    </td>
+                    <td>
+                        <a href="{{ url_for('services.modify', id=serv.id) }}" class="btn btn-primary">Modificar</a>
+                        {% if ( session["role"] == "Super Administrador" or  session["role"] == "Administrador" or session["role"] == "Dueño") %}
+                        <a href="{{ url_for('services.delete', id=serv.id) }}" class="btn btn-danger">Eliminar Servicio</a>
+                        {% endif %}
+                        
+                    </td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    </div>
+    <div class="pagination">
+        <ul class="pagination pagination-sm">
+            {% if current_page > 1 %}
+            <li class="page-item">
+                <a href="{{ url_for('services.my_services', id=institution, page=current_page - 1, items_per_page=items_per_page) }}"
+                    class="page-link">Anterior</a>
+            </li>
+            {% endif %}
+            {% for page_num in range(1, total_pages + 1) %}
+            <li class="page-item {% if page_num == current_page %}active{% endif %}">
+                <a href="{{ url_for('services.my_services', id=institution, page=page_num, items_per_page=items_per_page) }}" class="page-link">{{
+                    page_num }}</a>
+            </li>
+            {% endfor %}
+            {% if current_page < total_pages %} <li class="page-item">
+                <a href="{{ url_for('services.my_services', id=institution, page=current_page + 1, items_per_page=items_per_page) }}"
+                    class="page-link">Siguiente</a>
+                </li>
+                {% endif %}
+        </ul>
+    </div>
+</div>
+{% endblock %}

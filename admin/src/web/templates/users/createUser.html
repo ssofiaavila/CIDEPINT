@@ -1,0 +1,79 @@
+{% extends "layout.html" %}
+{% block title %}
+<title>Create Users</title>
+<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='./css/users/modify.css') }}">
+{% endblock %}
+
+{% block content %}
+<!-- Modal -->
+<div class="modal fade" id="modifyUserModal" tabindex="-1" role="dialog" aria-labelledby="modifyUserModalLabel"
+    aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="modifyUserModalLabel">Crear usuario</h5>
+            </div>
+            <div class="modal-body">
+                <!-- Aquí colocas los campos para modificar los datos del usuario -->
+                <form method="post" action="{{ url_for('users.create_user') }}">
+                    <!-- CAMPO NOMBRE -->
+                    <div class="form-group">
+                        <label for="nombre">Nombre:</label>
+                        <input type="text" class="form-control" id="name" name="name" value="" required>
+                    
+                    <!-- CAMPO APELLIDO  -->
+                    <div class="form-group">
+                        <label for="lastname">Apellido:</label>
+                        <input type="text" class="form-control" id="lastname" name="lastname" value="" required>
+                    </div>
+
+                    <!-- CAMPO NOMBRE DE USUARIO -->
+                    <div class="form-group">
+                        <label for="username">Nombre de usuario:</label>
+                        <input type="text" class="form-control" id="username" name="username" value="" required>
+                    </div>
+
+                    <!-- EMAIL -->
+                    <div class="form-group">
+                        <label for="email">Email:</label>
+                        <input type="text" class="form-control" id="email" name="email" value="" required>
+                    </div>
+
+                    <!-- INSTITUCION FALTA IMPLEMENTAR-->
+                    <div class="form-group">
+                        <label for="institucion">Institucion:</label>
+                        <select class="form-control" id="institucion" name="institucion" required>
+                            {% for institucion in instituciones %}
+                            <option value="{{ institucion.id }}">
+                                {{ institucion.name }}
+                            </option>
+                            {% endfor %}
+                        </select>
+                    </div>
+                    
+
+                    <!-- ROL -->
+                    <div class="form-group">
+                        <label for="rol">Rol:</label>
+                        <select class="form-control" id="rol" name="rol" required>
+                            {% for role in roles %}
+                            <option value="{{ role.id }}">
+                                {{ role.name }}
+                            </option>
+                            {% endfor %}
+                        </select>
+                    </div>
+                </div>
+                   
+                    <button type="submit" class="btn btn-primary">Crear usuario</button>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <a class="btn btn-dark" href="{{ url_for('users.index') }}">
+                    Cancelar
+                </a>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

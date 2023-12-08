@@ -1,0 +1,12 @@
+{% extends "layout.html" %}
+{% block title %}
+<title>Grupo 19 | Proyecto de sofwtare | Error</title>
+{% endblock %}
+
+{% block content %}
+<h1 class="error-name">Error {{ error_name }}</h1>
+<h2 class="error-description"> {{ error_description }}</h2>
+<div class="button-container">
+    <a href="{{ url_for('home.index') }}" class="button-link">Volver al Home</a>
+</div>
+{% endblock %}
